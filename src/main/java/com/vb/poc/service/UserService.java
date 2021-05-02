@@ -1,30 +1,23 @@
 package com.vb.poc.service;
 
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.vb.poc.model.User;
+import com.vb.poc.repository.UserRepository;
 
 @Service
 public class UserService {
 
-	private User createUser(String firstname, String lastname, int age) {
-		return null;
+	@Autowired
+	private UserRepository userRepository;
+
+	public User saveUser(String firstname, String lastname, int age) {
+		return userRepository.save(new User(firstname, lastname, age));
 	}
 
-	private User retrieveUser(String firstname, String lastname) {
-		return null;
-	}
-
-	private List<User> retrieveUserList() {
-		return null;
-	}
-
-	private User updateUser(long id, User user) {
-		return null;
-	}
-
-	private User deleteUser(long id) {
-		return null;
+	public List<User> retrieveUserList() {
+		return (List<User>) userRepository.findAll();
 	}
 
 }
